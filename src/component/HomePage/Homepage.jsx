@@ -15,11 +15,9 @@ import sp3 from '../../assets/SP3.jpg'
 import sp4 from '../../assets/SP4.jpg'
 import sp5 from '../../assets/SP5.jpg'
 import './homepage.css'
-import Search from '../Search';
 const Homepage = () => {
   const [menu, setMenu] = useState("")
   const navigate = useNavigate();
-  const [searchResults, setSearchResults] = useState([]);
   const handleClick = () => {
    navigate("/login")
   }
@@ -63,18 +61,8 @@ const Homepage = () => {
             <li onMouseEnter={()=>{setMenu("accessories")}} onClick={accessoriesClick}>Accessories {menu==="accessories"? <hr/>: <></>} </li>
           </ul>
           <div className='nav-search-login-cart'>
-                <Search onResults={searchResults}/>
-                <div>
-                {searchResults.length > 0 ? (
-                    <ul>
-                        {searchResults.map(product => (
-                            <li key={product.id}>{product.name}</li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No products found.</p>
-                )}
-            </div>
+                {/* <Search onResults={searchResults}/> */}
+                <input type="text" placeholder='Search' name='text' className='input' />
                 <img src={si} type = "button" style={{maxWidth: "35px"}}/>
                <img src={ic} type = "button" onClick={handleClick} style={{maxWidth:"35px"}}/>
                <img src={icd} type = "button" style={{maxWidth:"35px"}}/>

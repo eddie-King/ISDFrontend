@@ -1,0 +1,27 @@
+name: Update GitHub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run dev
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.email "tutakatakk3@gmail.com"
+          git config --global user.name "eddie-King"
+          git add .
+          git commit -m "Auto update build artifacts"
+          git push

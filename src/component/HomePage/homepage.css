@@ -1,0 +1,18 @@
+.inputbt{
+    position: relative;
+}
+.input{
+    width: 200px;
+    max-height: 15px;
+    padding: 20px 0px 20px 20px;
+    border-radius: 9999px;
+    border: solid 2px #333;
+    transition: all .2s ease-in-out;
+    outline: none;
+    opacity: 0.8;
+    margin-top: 15px;
+}
+.input:focus{
+    opacity: 1;
+    width: 300px;
+}

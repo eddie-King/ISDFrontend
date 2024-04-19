@@ -1,0 +1,17 @@
+.card-img-top {
+    width: 100%;  /* Ensure the image takes the full width of the card */
+    height: 200px; /* Set a fixed height to maintain a uniform size */
+    object-fit: contain; /* Scales the image to fit the area, may show some space */
+    background-color: #f8f9fa; /* Optional: background color to fill empty space */
+  }
+
+.masonry-grid {
+    column-count: 3;  /* Adjust based on how many columns you want */
+    column-gap: 30px; /* Space between columns */
+}
+
+.masonry-grid-item {
+    break-inside: avoid; /* Prevents column breaks within an item */
+    margin-bottom: 30px; /* Space between items */
+    width: 100%; /* Fixes an issue where items might not use full width */
+}

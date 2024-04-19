@@ -1,0 +1,65 @@
+.product-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+
+   h2{
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  span {
+    font-size: 1.2em;
+    color: #666;
+    float: right;
+  }
+  
+  .categoryna,row p{
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .addCart {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #5cb85c;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+
+
+  .box{
+    flex: 3;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+  }
+
+  .quantityDiv{
+    display: flex;
+    gap: 10px;
+  }
+  .btnQuantity {
+    padding: 1px 2px;
+    font-size: 20px;
+    color:black;
+    background-color: white;
+    border: 2px black solid;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    max-width: 28px;
+    max-height: 30px;
+    text-align: center;
+    line-height: normal;
+  }

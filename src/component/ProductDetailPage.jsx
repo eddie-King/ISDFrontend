@@ -28,7 +28,7 @@ const ProductDetailPage = () => {
     <>
       <div className="product-layout">
         <div className="image-section" key={product.id}>
-          <Col xs={10} md={10}>
+          <Col xs={8} md={8} className='move-right'>
           <Image src={product.imageUrl} thumbnail />
         </Col>
           

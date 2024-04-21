@@ -55,7 +55,7 @@ const Accessories = () => {
       </div>
 
       <div>
-        <div className="navbar">
+        <div className="navbar_container">
           <div className="nav-logo">
             <a href="/">
               <p>ShopNest</p>
@@ -108,7 +108,7 @@ const Accessories = () => {
       
       <div className="container mt-3">
             <div className="masonry-grid">
-                {products.map((product) => (
+                {products && products.data && products.data.map((product) => (
                     <div className="masonry-grid-item" key={product.id}>
                         <Card>
                             <Card.Img variant="top" src={product.imageUrl} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'contain' }} />

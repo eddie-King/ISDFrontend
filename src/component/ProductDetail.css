@@ -5,7 +5,15 @@
     padding: 20px;
 }
 
-
+.move-right{
+  position: relative;
+  left: 150px;
+}
+.image-section{
+  box-sizing: border-box;
+    font-family: "Space Grotesk", sans-serif;
+    width: 100%;
+}
    h2{
     font-size: 1.5em;
     color: #333;

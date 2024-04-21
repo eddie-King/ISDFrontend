@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import axios from "axios";
+import './Login.css'
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
     const submit = async e =>{
         e.preventDefault();
         try{
@@ -31,15 +32,19 @@ const Login = () => {
         navigate("/register")
     }
 
-    const handleEmailChange = (event) => {
+    const handleChange = (event) => {
         setEmail(event.target.value);
     };
     const validateEmail = () => {
-        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-        if (!emailRegex.test(email)) {
-            setError('Please enter a valid email address');
-        } else {
-            setError('');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(email)) {
+            setMessage('Email is Valid');
+        } else if(email === ""){
+            setMessage("Please enter email")
+        }else if(!emailRegex.test(email)){
+            setMessage("Email is not valid")
+        }else{
+            setMessage("")
         }
     };
     useEffect(()=>{
@@ -49,46 +54,38 @@ const Login = () => {
   return (
     <>
         <div className='login__container'>
-        <h2>Login </h2>
+        <h2 style={{display:'flex', justifyContent:'center'}}> Welcome back! </h2>
             <form className='login__form' onSubmit={submit}>
-                
-            <label htmlFor='email'>Email</label>
-                <input
-                    type='text'
-                    value={email}
-                    placeholder='email'
-                    required
-                    onInput={handleEmailChange}
-                />
-            {error && (
-                <div className="bg-red-800 p-1 font-bold text-white">
-                    {error}
-                </div>)}
-
-        <label htmlFor='password'>Password</label>
-                <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    placeholder='password'
-                    minLength={8}
-                    maxLength={50}
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+            
+            <div style={{color:"red", display: 'flex', justifyContent: "center", marginBottom: 10}}>{message}</div>
+            <input
+                type='text'
+                value={email}
+                placeholder='Enter email here'
+                required
+                onInput={handleChange}
+            />
+            <input
+                type='password'
+                name='password'
+                id='password'
+                placeholder='Enter password here'
+                minLength={2}
+                maxLength={50}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
 
 
-                <button className='loginBtn'type='submit'>SIGN IN</button>
+            <button className='loginBtn'type='submit'>SIGN IN</button>
 
 
-                <p>
-                    Don't have an account?{" "}
+            <p> Don't have an account?
                     <span className='link' onClick={handleClick} >
                         Sign up
                     </span>
-                </p>
-
+            </p>
 
             </form>
         </div>

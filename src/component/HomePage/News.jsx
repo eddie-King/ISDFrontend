@@ -55,7 +55,7 @@ const News = () => {
       </div>
 
       <div>
-        <div className="navbar">
+        <div className="navbar_container">
           <div className="nav-logo">
             <a href="/">
               <p>ShopNest</p>
@@ -111,7 +111,7 @@ const News = () => {
 
       <div className="container mt-3">
             <div className="masonry-grid">
-                {products.map((product) => (
+                {products && products.data && products.data.map((product) => (
             
                     <div className="masonry-grid-item" key={product.id}>
                         <Card>
@@ -129,6 +129,8 @@ const News = () => {
             </div>
         </div>
   
+
+
         <div className="row text-center bg-secondary-subtle p-4">
         <div className="col-3">
           <h5>About us</h5>

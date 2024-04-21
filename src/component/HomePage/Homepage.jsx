@@ -15,6 +15,7 @@ import sp3 from '../../assets/SP3.jpg'
 import sp4 from '../../assets/SP4.jpg'
 import sp5 from '../../assets/SP5.jpg'
 import './homepage.css'
+// import Search from '../Search';
 const Homepage = () => {
   const [menu, setMenu] = useState("")
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const Homepage = () => {
   return (
     <>
     {/*Header*/}
-    <div style={{background:"#D9D9D9"}}>
+    <div style={{background:"#D9D9D9"}} className='topp'>
       <div className="d-flex justify-content-end ">
           <div className="p-2">Support</div>
             <div className="p-2">English</div>
@@ -50,7 +51,7 @@ const Homepage = () => {
 
     {/*NavBar*/}
     <div>
-        <div className='navbar'>
+        <div className='navbar_container'>
           <div className='nav-logo'>
           <a href="/"><p>ShopNest</p></a>
           </div>
@@ -61,8 +62,8 @@ const Homepage = () => {
             <li onMouseEnter={()=>{setMenu("accessories")}} onClick={accessoriesClick}>Accessories {menu==="accessories"? <hr/>: <></>} </li>
           </ul>
           <div className='nav-search-login-cart'>
-                {/* <Search onResults={searchResults}/> */}
-                <input type="text" placeholder='Search' name='text' className='input' />
+              
+            
                 <img src={si} type = "button" style={{maxWidth: "35px"}}/>
                <img src={ic} type = "button" onClick={handleClick} style={{maxWidth:"35px"}}/>
                <img src={icd} type = "button" style={{maxWidth:"35px"}}/>

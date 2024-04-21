@@ -54,7 +54,7 @@ const Tops = () => {
     </div>
     
     <div>
-        <div className='navbar'> 
+        <div className='navbar_container'> 
             <div className='nav-logo'>
             <a href="/"><p>ShopNest</p></a>
             </div>
@@ -77,7 +77,7 @@ const Tops = () => {
     </div>
     <div className="container mt-3">
             <div className="masonry-grid">
-                {products.map((product) => (
+                {products && products.data && products.data.map((product) => (
             
                     <div className="masonry-grid-item" key={product.id}>
                         <Card>

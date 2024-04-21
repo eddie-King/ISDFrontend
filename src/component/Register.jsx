@@ -1,50 +1,55 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import'./Login.css'
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
     const handleSubmit = async function save(event){
-        event.preventDefault;
+        event.preventDefault();
         try{
-            await axios.post("http://localhost:8088/auth/register", {
+            const response = await axios.post("http://localhost:8088/auth/register", {
                 email: email,
                 name: username ,
                 password: password,
-            });
+            })
+            console.log(response.data)
             alert("Register successfully");
             return navigate('/login')
         } catch(err){
             alert(err);
         }
     }
-   
-    const gotoLoginPage = () => navigate("/login");
-
+    const gotoLoginPage = ()=>{
+        navigate('/login')
+    }
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
     const validateEmail = () => {
-        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-        if (!emailRegex.test(email)) {
-            setError('Please enter a valid email address');
-        } else {
-            setError('');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(email)) {
+            setMessage('Email is Valid');
+        } else if(email === ""){
+            setMessage("Please enter email")
+        }else if(!emailRegex.test(email)){
+            setMessage("Email is not valid")
+        }else{
+            setMessage("")
         }
     };
     useEffect(()=>{
         validateEmail();
     },[email])
-
     return (
         <div className='signup__container'>
-            <h2>Sign up </h2>
+            <h2> Sign up </h2>
             <form className='signup__form' onSubmit={handleSubmit}>
                 <label htmlFor='email'>Email Address</label>
+                <div style={{color:"red"}}>{message}</div>
                 <input
                     type='email'
                     placeholder="Email"
@@ -52,10 +57,7 @@ const Signup = () => {
                     required
                     onInput={handleEmailChange}
                 />
-                {error && (
-                <div className="bg-red-800 p-1 font-bold text-white">
-                    {error}
-                </div>)}
+               
 
                 <label htmlFor='username'>Username</label>
                 <input
@@ -75,11 +77,12 @@ const Signup = () => {
                     id='password'
                     placeholder="password"
                     minLength={8}
+                    maxLength={50}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button className='signupBtn'onClick={handleSubmit}>SIGN UP</button>
+                <button className='signupBtn' type= 'submit'>SIGN UP</button>
                 <p>
                     Already have an account?{" "}
                     <span className='link' onClick={gotoLoginPage}>

@@ -6,11 +6,13 @@ import Image from 'react-bootstrap/Image';
 import Header from './Header';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import token from '../Token'
+import Api from '../ultils/Api';
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const [product, setProducts] = useState('')
-  const [quantity, setQuantity]= useState(1);
-  
+  const [amount, setAmount]= useState(1);
+  const [myCart, setMyCart]= useState([]);
   useEffect(()=>{
         const fetchData = async () => {
           const {data, err} = await axios.get(`http://localhost:8088/products/${productId}`)
@@ -19,18 +21,39 @@ const ProductDetailPage = () => {
         }
         fetchData()
   },[])
-  
   const addItems = ()=>{
-    if(quantity< product.quantity) setQuantity(quantity => quantity +1)
+    if(amount< product.quantity) setAmount(amount => amount +1)
   }
   const decreaseItems = () => {
-    if(quantity>1) { setQuantity(quantity => quantity -1)}
+    if(amount>1) { setAmount(amount => amount -1)}
   }
+
   
-  const addToCart = ()=>{
-    
-    
-  }
+  const addToCart = () => {
+    const cartItem = {
+      id: productId,
+      image: product.imageUrl,
+      name: product.name,
+      price: product.price,
+      amount: amount
+    };
+
+    const storedCart = localStorage.getItem('myCart');
+    let cartArray;
+
+    try {
+      cartArray = storedCart ? JSON.parse(storedCart) : [];
+      if (!Array.isArray(cartArray)) {
+        cartArray = [];
+      }
+    } catch (e) {
+      cartArray = [];
+    }
+
+    cartArray.push(cartItem);
+    localStorage.setItem('myCart', JSON.stringify(cartArray));
+    alert("Add Successful man!")
+  };
   return (
     <>
 
@@ -50,15 +73,15 @@ const ProductDetailPage = () => {
               <span> ${product.price}</span>
               <p>Quantity: {product.quantity}</p>
               <p>Availability: {product.availability}</p>
-            </div>
+            </div>   
 
             <p>Description: {product.description}</p>
             <p className='categoryna'>Category: {product.category?.categoryName || 'No Category'}</p>
 
             <div className='quantityDiv'>
-            <label htmlFor="quantity">Quantity:</label>
+            <label htmlFor="amount">Amount:</label>
                 <button className='btnQuantity' onClick={decreaseItems}> - </button>
-                <p>{quantity}</p>
+                <p>{amount}</p>
                 <button className='btnQuantity' onClick={addItems}> + </button>
                 </div>
 

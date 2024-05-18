@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 import Homepage from './component/HomePage/Homepage'
 import Login from './component/Login'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -10,9 +10,9 @@ import Accessories from './component/Accessories';
 import ProductDetailPage from './component/ProductDetailPage';
 import SearchResult from './component/SearchResult';
 import Cart from './component/Cart';
+import Checkout from './component/Checkout';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -28,6 +28,7 @@ function App() {
                 <Route path='/product-detail/:productId' element={<ProductDetailPage/>} />
                 <Route path='/search/:keyword' element={<SearchResult/>}/>
                 <Route path='/your-cart' element= {<Cart/>}/>
+                <Route path='/check-out' element={<Checkout/>}/>
             </Routes>
         </BrowserRouter>
     </>

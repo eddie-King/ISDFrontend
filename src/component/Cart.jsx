@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
+    const [cartItems, setCartItems] = useState([])
+    const navigate = useNavigate();
+    useEffect(()=>{
+      const storedCart = localStorage.getItem('myCart')
+      if(storedCart) {
+        setCartItems(JSON.parse(storedCart))
+      }
+    }, [])
+    const removeFromCart = (index) =>{
+      const storedCard = localStorage.getItem('myCart')
+      if (storedCard){
+        let cartArray = JSON.parse(storedCard)
+        if (Array.isArray(cartArray) && index >=0 && index< cartArray.length){
+          cartArray.slice(index, 1)
+          localStorage.setItem('myCart', JSON.stringify(cartArray))
+        }
+      }
+    }
+
+    const gotoDetailPage = (id)=>{
     
-
-
-
-
-
+      navigate("/product-detail/"+id)
+    }
 
   return (
     <>
@@ -44,65 +61,64 @@ const Cart = () => {
                       </tr>
                     </thead>
 
-
-
                     <tbody>
-                      <tr>
+                      {cartItems.map( (item, index) => (
+                      <tr key = {index}>
                         <td>
                           <figure className="itemside">
                             <div className="aside">
                               <img
-                                src="assets/images/items/1.jpg"
+                                src={item.image}
                                 className="img-sm"
+                                width="50%"
                               />
                             </div>
 
                             <figcaption className="info">
-                              <a href="#" className="title text-dark">
-                                Some name of item goes here nice
+                              <a onClick={()=>gotoDetailPage(item.id)}  className="title text-dark ">
+                                {item.name}
                               </a>
                             </figcaption>
                           </figure>
                         </td>
 
                         <td>
-                         1
+                         {item.amount}
                         </td>
 
                         <td>
                           <div className="price-wrap">
-                            <var className="price">$1156.00</var>
+                            <var className="price">${item.price * item.amount}</var>
                         
                           </div>
                         </td>
                         <td className="text-right">
-                          <a
-                            data-original-title="Save to Wishlist"
-                            title=""
-                            href=""
+                          <button
                             className="btn btn-light mr-2"
-                            data-toggle="tooltip"
                           >
-
-                            {" "}
                             <i className="fa fa-heart"></i>
-                          </a>
+                          </button>
 
-                          <a href="" className="btn btn-light">
-                            {" "}
+                          <button href="" className="btn btn-light" onClick={removeFromCart(index)}>
                             Remove
-                          </a>
+                          </button>
                         </td>
                       </tr>
-                     
+                     ))}
             
                     </tbody>
                   </table>
+                        <div className="card-body border-top">
+                          
+                          <a href="/check-out" className="btn btn-success float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+                      </div> 
                 </div>
               </main>
             </div>
           </div>
         </section>
+
+    
       </div>
 
       <Footer />

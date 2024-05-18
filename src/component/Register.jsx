@@ -45,53 +45,90 @@ const Signup = () => {
         validateEmail();
     },[email])
     return (
-        <div className='signup__container'>
-            <h2> Sign up </h2>
-            <form className='signup__form' onSubmit={handleSubmit}>
-                <label htmlFor='email'>Email Address</label>
-                <div style={{color:"red"}}>{message}</div>
+        <div className="limiter">
+        <div className="container-login100">
+          <div className="wrap-login100">
+            <div className="login100-pic js-tilt" data-tilt="">
+              <img
+                src="https://img.freepik.com/premium-vector/man-holding-cloud-storage-padlock_174639-73382.jpg?w=740"
+                alt="IMG"
+              />
+            </div>
+            <form className="login100-form validate-form" onSubmit={handleSubmit}>
+              <span className="login100-form-title">Sign up</span>
+              <div style={{color:"red", paddingBottom: 10}}>{message}</div>
+              <div
+                className="wrap-input100"
+              >
                 <input
-                    type='email'
-                    placeholder="Email"
-                    value={email}
-                    required
-                    onInput={handleEmailChange}
+                  className="input100"
+                  type="text"
+                  name="email"
+                  placeholder="Enter email here!"
+                  value={email}
+                  required
+                  onInput={handleEmailChange}
                 />
-               
-
-                <label htmlFor='username'>Username</label>
+                <span className="focus-input100" />
+                <span className="symbol-input100">
+                  <i className="fa fa-envelope" aria-hidden="true" />
+                </span>
+              </div>
+              <div
+                className="wrap-input100"
+              >
+              <input
+                  className="input100"
+                  type="text"
+                  placeholder="Enter username here!"
+                  value={username}
+                  required
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                <span className="focus-input100" />
+                <span className="symbol-input100">
+                  <i className="fa fa-fw fa-address-card" aria-hidden="true" />
+                </span>
+                </div>
+              <div
+                className="wrap-input100"
+              >
                 <input
-                    type='text'
-                    id='username'
-                    name='username'
-                    placeholder="username"
-                    value={username}
-                    required
-                    onChange={(e) => setUsername(e.target.value)}
+                  className="input100"
+                  type="password"
+                  name="pass"
+                  value={password}
+                  required
+                  minLength={8}
+                   maxLength={30}
+                  placeholder="Enter password here!"
+                  onChange={(e) => setPassword(e.target.value)}
+      
                 />
-                
-                <label htmlFor='password'>Password</label>
-                <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    placeholder="password"
-                    minLength={8}
-                    maxLength={50}
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button className='signupBtn' type= 'submit'>SIGN UP</button>
-                <p>
-                    Already have an account?{" "}
-                    <span className='link' onClick={gotoLoginPage}>
-                        Login
-                    </span>
-                </p>
+                <span className="focus-input100" />
+                <span className="symbol-input100">
+                  <i className="fa fa-lock" aria-hidden="true" />
+                </span>
+              </div>
+              <div className="container-login100-form-btn">
+                <button className="login100-form-btn" type='submit'>Sign up</button>
+              </div>
+              
+              <div className="text-center p-t-136">
+                <a className="txt2" href="#" onClick={gotoLoginPage}>
+                Already have an account? Click me!
+                  <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true" />
+                </a>
+              </div>
             </form>
+          </div>
         </div>
+      </div>
+        
+        
     );
+    
+  
 };
 
 export default Signup;

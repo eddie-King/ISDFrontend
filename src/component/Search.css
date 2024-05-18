@@ -1,0 +1,25 @@
+.container-input{
+    position: relative;
+}
+.input{
+    width: 200px;
+    max-height: 15px;
+    padding: 20px 0px 20px 20px;
+    border-radius: 9999px;
+    border: solid 2px #333;
+    transition: all .2s ease-in-out;
+    outline: none;
+    opacity: 0.8;
+}
+.input:focus{
+    opacity: 1;
+    width: 300px;
+}
+.search-button {
+    border: none;        /* Removes the border */
+    background: none;    /* Makes the background transparent */
+    cursor: pointer;     /* Changes cursor to pointer on hover */
+    padding: 0;          /* Remove padding if any */
+    outline: none;       /* Removes focus outline */
+    margin-left: 5px;
+}

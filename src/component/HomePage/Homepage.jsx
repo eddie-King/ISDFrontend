@@ -1,9 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import si from '../../assets/Icon search.png'
-import ic from '../../assets/Icon account.png'
-import icd from '../../assets/Icon cart.png'
 import hq1 from '../../assets/Ảnh homepage 1.jpg'
 import hq2 from '../../assets/Ảnh hompage 2.jpg'
 import hq3 from '../../assets/Ảnh homepage 3.jpg'
@@ -15,63 +10,19 @@ import sp3 from '../../assets/SP3.jpg'
 import sp4 from '../../assets/SP4.jpg'
 import sp5 from '../../assets/SP5.jpg'
 import './homepage.css'
-// import Search from '../Search';
+import Header from '../Header';
+import Footer from '../Footer';
+import Navbar from '../Navbar';
 const Homepage = () => {
-  const [menu, setMenu] = useState("")
-  const navigate = useNavigate();
-  const handleClick = () => {
-   navigate("/login")
-  }
-  const newClick = ()=>{
-    navigate("/news")
-  }
-  const topClick = ()=>{
-    navigate("/tops")
-  }
-  const bottomClick = ()=>{
-    navigate("/bottoms")
-  }
-  const accessoriesClick = ()=>{
-    navigate("/accessories")
-  }
 
-  
 
-  
   return (
     <>
     {/*Header*/}
-    <div style={{background:"#D9D9D9"}} className='topp'>
-      <div className="d-flex justify-content-end ">
-          <div className="p-2">Support</div>
-            <div className="p-2">English</div>
-            <div className="p-2">Tiếng Việt</div>
-          </div>
-    </div>
+     <Header/>
 
     {/*NavBar*/}
-    <div>
-        <div className='navbar_container'>
-          <div className='nav-logo'>
-          <a href="/"><p>ShopNest</p></a>
-          </div>
-          <ul className='nav-menu'>
-            <li onMouseEnter={()=>{setMenu("news")}} onClick={newClick} >News {menu==="news"? <hr/>: <></>} </li>
-            <li onMouseEnter={()=>{setMenu("tops")}} onClick={topClick}>Tops {menu==="tops"? <hr/>: <></>} </li>
-            <li onMouseEnter={()=>{setMenu("bottoms")}} onClick={bottomClick}>Bottoms {menu==="bottoms"? <hr/>: <></>} </li>
-            <li onMouseEnter={()=>{setMenu("accessories")}} onClick={accessoriesClick}>Accessories {menu==="accessories"? <hr/>: <></>} </li>
-          </ul>
-          <div className='nav-search-login-cart'>
-              
-            
-                <img src={si} type = "button" style={{maxWidth: "35px"}}/>
-               <img src={ic} type = "button" onClick={handleClick} style={{maxWidth:"35px"}}/>
-               <img src={icd} type = "button" style={{maxWidth:"35px"}}/>
-            
-          </div>
-        </div>
-    </div>
-
+    <Navbar/>
     {/*Div3*/}
     <div className='mb-5'>
         <img src={hq1} className= 'img-fluid'/>
@@ -110,54 +61,7 @@ const Homepage = () => {
 
       {/*div7: about */}
 
-      <div className="row text-center bg-secondary-subtle p-4">
-        <div className="col-3">
-          <h5>About us</h5>
-          <ul className='list-unstyled'>
-            <li className="mb-2">
-              Information
-            </li>
-          </ul>
-        </div>
-
-        <div className="col-3">
-          <h5>Help</h5>
-          <ul className='list-unstyled'>
-            <li className="mb-2">
-              FAQ
-            </li>
-            <li className="mb-2">
-              Return Policy
-            </li>
-            <li className="mb-2">
-              Privacy Policy
-            </li>
-            <li className="mb-2">
-              Assesibility
-            </li>
-          </ul>
-        </div>
-
-        <div className="col-3">
-          <h5>Account</h5>
-          <ul className='list-unstyled'>
-            <li className="mb-2">
-              Profile
-            </li>
-          </ul>
-        </div>
-        
-        <div className="col-3">
-          <h5>Subcribe</h5>
-          <ul className='list-unstyled'>
-            <li className="d-inline-block">
-             Sign up and be the first-in-the know about new arrivals,
-             promotions, in-store events and more.
-            </li>
-          </ul>
-        </div>
-      </div>
-
+      <Footer/>
     </>
   )
 }

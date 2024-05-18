@@ -1,15 +1,10 @@
-*{
-    box-sizing: border-box;
-    font-family: "Space Grotesk", sans-serif;
-    
-}
 .navbar_container{
     display: flex;
     justify-content: space-around;
     padding: 16px;
     box-shadow: 0 1px 3px -2px red;
 }
-a{
+.nav-logo a{
     text-decoration: none;
 }
 .nav-logo{
@@ -59,10 +54,11 @@ a{
     
 
 }
-.d-flex object-fit-contain border rounded{
-  align-items: center;
-  justify-content: space-between;
-}
+
+
+
+
+
 
 
 

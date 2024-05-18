@@ -2,8 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './ProductDetail.css'
-import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
+import Header from './Header';
+import Navbar from './Navbar';
+import Footer from './Footer';
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const [product, setProducts] = useState('')
@@ -11,8 +13,9 @@ const ProductDetailPage = () => {
   
   useEffect(()=>{
         const fetchData = async () => {
-          const {data, err} = await axios.get(`http://localhost:8088/auth/products/${productId}`)
+          const {data, err} = await axios.get(`http://localhost:8088/products/${productId}`)
           setProducts(data)
+          console.log(data)
         }
         fetchData()
   },[])
@@ -24,20 +27,27 @@ const ProductDetailPage = () => {
     if(quantity>1) { setQuantity(quantity => quantity -1)}
   }
   
+  const addToCart = ()=>{
+    
+    
+  }
   return (
     <>
-      <div className="product-layout">
-        <div className="image-section" key={product.id}>
-          <Col xs={8} md={8} className='move-right'>
-          <Image src={product.imageUrl} thumbnail />
-        </Col>
+
+    <Header/>
+    <Navbar/>
+      <div className="product-layout row mb-5 mt-5">
+
+        <div className="image-section col-5" key={product.id}>
           
+          <Image src={product.imageUrl} thumbnail />
         </div>
-        <div>
-          <div className="details-section">
+
+        <div className='col-7'>
+          <div className="details-section ">
             <div className="row">
               <h2>{product.name}</h2>
-              <span>${product.price}</span>
+              <span> ${product.price}</span>
               <p>Quantity: {product.quantity}</p>
               <p>Availability: {product.availability}</p>
             </div>
@@ -52,10 +62,13 @@ const ProductDetailPage = () => {
                 <button className='btnQuantity' onClick={addItems}> + </button>
                 </div>
 
-          <button className="addCart">Add to cart</button>
+          <button className="addCart" onClick={addToCart}>Add to cart</button>
           </div>
         </div>
       </div>
+
+
+      <Footer/>
     </>
   )
 }

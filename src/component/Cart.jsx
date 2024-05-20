@@ -25,10 +25,12 @@ const Cart = () => {
   };
 
     const addItems = (index) => {
+      
       setCartItems(prevItems => {
           const newItems = [...prevItems];
-          if (prevItems[index].amount < newItems[index].quantity) {
-              newItems[index].amount = prevItems[index].amount + 1;
+         
+          if (newItems[index].amount < newItems[index].quantity) {
+              newItems[index].amount += 0.5;  
               localStorage.setItem('myCart', JSON.stringify(newItems));
           }
           return newItems;
@@ -39,7 +41,7 @@ const Cart = () => {
     setCartItems(prevItems => {
       const newItems = [...prevItems];
       if (newItems[index].amount > 1) {
-          newItems[index].amount -= 1;
+          newItems[index].amount -= 0.5;
           localStorage.setItem('myCart', JSON.stringify(newItems));
       }
       return newItems;
@@ -106,11 +108,11 @@ const Cart = () => {
                         </td>
 
                         <td>
-                        <button onClick={() => decreaseItems(index)} className="btn btn-sm  mx-1">
+                        <button onClick={() => decreaseItems(index)} className="btn btn-sm  mr-1">
                                 -
                               </button>
                               {item.amount}
-                              <button onClick={() => addItems(index)} className="btn btn-sm  mx-">
+                              <button onClick={() => addItems(index)} className="btn btn-sm  ml-1">
                                 +
                               </button>
                         </td>

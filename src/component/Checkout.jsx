@@ -16,6 +16,8 @@ import Navbar from "./Navbar";
 import Header from "./Header";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert'
+import { Button } from "bootstrap";
 export default function Checkout() {
 
   const [cartItems, setCartItems] = useState([])
@@ -28,7 +30,11 @@ export default function Checkout() {
   }, [])
   const totalAmount = cartItems.reduce((sum, obj) => sum + obj.amount, 0)
   const totalPrice = cartItems.reduce((sum, obj) => sum + obj.price, 0)
-
+const handleBuy = (event)=>{
+  event.preventDefault(); 
+  swal("Successful!", "Your order is completed!", "success")
+  .then(() => {navigate('/')});
+}
 
 
   return (
@@ -159,7 +165,7 @@ export default function Checkout() {
                         Your information will be under privated !
                       </p>
 
-                      <MDBBtn block size="lg" color="success">
+                      <MDBBtn block size="lg" color="success" onClick={handleBuy}>
                         Buy now
                       </MDBBtn>
                     </form>

@@ -33,7 +33,8 @@ const ProductDetailPage = () => {
       image: product.imageUrl,
       name: product.name,
       price: product.price,
-      amount: amount
+      amount: amount,
+      quantity: product.quantity
     };
     if(localStorage.getItem('access_token') === null)
       {

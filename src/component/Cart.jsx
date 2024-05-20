@@ -75,7 +75,7 @@ const Cart = () => {
                             </div>
 
                             <figcaption className="info">
-                              <a onClick={()=>gotoDetailPage(item.id)}  className="title text-dark ">
+                              <a onClick={()=>gotoDetailPage(item.id)}  className="title text-dark fs-5 mt-1">
                                 {item.name}
                               </a>
                             </figcaption>
@@ -110,7 +110,7 @@ const Cart = () => {
                   </table>
                         <div className="card-body border-top">
                           
-                          <a href="/check-out" className="btn btn-success float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+                          <a href="/check-out" className="btn btn-success float-md-right"> Make Purchase <i className="fa fa-chevron-right"></i> </a>
                       </div> 
                 </div>
               </main>

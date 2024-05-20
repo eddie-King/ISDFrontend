@@ -6,11 +6,19 @@ import ic from './../assets/Icon account.png'
 import icd from './../assets/Icon cart.png'
 import Search from './Search';
 import './Navbar.css'
+import notify from '../ultils/Notify';
 const Navbar = () => {
     const [menu, setMenu] = useState("")
     const navigate = useNavigate();
     const handleClick = () => {
-     navigate("/login")
+     const token = localStorage.getItem('access_token')
+     if(token === null){
+     navigate("/login")}
+     else{
+      localStorage.clear()
+      notify.success('Logout')
+
+     }
     }
     const newClick = ()=>{
       navigate("/news")
@@ -45,6 +53,7 @@ const Navbar = () => {
                 <Search/>
                <img src={ic} type = "button" onClick={handleClick} style={{maxWidth:"35px"}}/>
                <img src={icd} type = "button" onClick={toCart}style={{maxWidth:"35px"}}/>
+               <button>Logout</button>
             
           </div>
         </div>

@@ -6,8 +6,8 @@ import Image from 'react-bootstrap/Image';
 import Header from './Header';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import token from '../Token'
-import Api from '../ultils/Api';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const [product, setProducts] = useState('')
@@ -27,7 +27,9 @@ const ProductDetailPage = () => {
   const decreaseItems = () => {
     if(amount>1) { setAmount(amount => amount -1)}
   }
-
+  const showToastMessage = () => {
+    toast.success("Success Notification !")
+  };
   
   const addToCart = () => {
     const cartItem = {
@@ -52,7 +54,7 @@ const ProductDetailPage = () => {
 
     cartArray.push(cartItem);
     localStorage.setItem('myCart', JSON.stringify(cartArray));
-    alert("Add Successful man!")
+    showToastMessage()
   };
   return (
     <>

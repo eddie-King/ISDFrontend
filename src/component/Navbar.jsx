@@ -6,19 +6,30 @@ import ic from './../assets/Icon account.png'
 import icd from './../assets/Icon cart.png'
 import Search from './Search';
 import './Navbar.css'
-import notify from '../ultils/Notify';
+import swal from 'sweetalert'
 const Navbar = () => {
     const [menu, setMenu] = useState("")
     const navigate = useNavigate();
     const handleClick = () => {
      const token = localStorage.getItem('access_token')
-     if(token === null){
-     navigate("/login")}
-     else{
-      localStorage.clear()
-      notify.success('Logout')
-
-     }
+     if (token === null) {
+      navigate("/login");
+    } else {
+      swal({
+        title: "Are you sure about logout?",
+        text: "Once logged out, you will need to log in again to access your account.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willLogout) => {
+        if (willLogout) {
+          localStorage.clear();
+          navigate("/login");
+        } else {
+          swal.close(); 
+        }
+      });
+    }
     }
     const newClick = ()=>{
       navigate("/news")
@@ -53,7 +64,7 @@ const Navbar = () => {
                 <Search/>
                <img src={ic} type = "button" onClick={handleClick} style={{maxWidth:"35px"}}/>
                <img src={icd} type = "button" onClick={toCart}style={{maxWidth:"35px"}}/>
-               <button>Logout</button>
+            
             
           </div>
         </div>

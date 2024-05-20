@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import'./Login.css'
+import swal from 'sweetalert'
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -17,7 +18,8 @@ const Signup = () => {
                 password: password,
             })
             console.log(response.data)
-            alert("Register successfully");
+
+            swal("Register successfully!", "Please login!", "success");
             return navigate('/login')
         } catch(err){
             alert(err);

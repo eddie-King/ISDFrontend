@@ -28,7 +28,7 @@ const SearchResult = () => {
           setProducts(data)
           products.totalPage = data.totalPage
           products.totalElement = data.totalElement
-          localStorage.setItem('products', JSON.stringify(data))}
+          }
           if(data&& data.length === 0){
             setProducts([])
           }
@@ -57,9 +57,9 @@ const SearchResult = () => {
                         className="img-fluid"/>
                 </div>
                 <div className=" col-md-6 mt-5">
-                    <p className="fs-3"> <span className="text-danger"></span> Product not found.</p>
+                    <p className="fs-3"> <span className="text-danger"></span> Product not found!</p>
                     <p className="lead">
-                        The Product you’re looking for doesn’t exist.
+                        The Product you're looking for doesn't exist.
                     </p>
                     <a href="/" className="btn btn-success">Go Home</a>
                 </div>
@@ -67,7 +67,7 @@ const SearchResult = () => {
             </div>
         </div>
         
-
+       
         <Footer/>
         </>
       )
@@ -106,7 +106,7 @@ const SearchResult = () => {
 
 return (
   <>
-  {products.length === 0 ? <Render404/>: <RenderProduct/>}
+  {products !==null ? <Render404/>: <RenderProduct/>}
   </>
 )
 

@@ -16,7 +16,6 @@ import Navbar from "./Navbar";
 import Header from "./Header";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Button } from "react-bootstrap";
 export default function Checkout() {
 
   const [cartItems, setCartItems] = useState([])
@@ -114,7 +113,7 @@ export default function Checkout() {
 
                     <form className="mb-5">
                       <MDBInput
-                        className="mb-5"
+                        className="mb-1"
                         label="Card number"
                         type="text"
                         size="lg"
@@ -122,17 +121,17 @@ export default function Checkout() {
                       />
 
                       <MDBInput
-                        className="mb-5"
+                        className="mb-2 mt-3"
                         label="Name on card"
                         type="text"
                         size="lg"
                         defaultValue="John Smith"
                       />
 
-                      <MDBRow>
+                      <MDBRow className="mt-3">
                         <MDBCol md="6" className="mb-5">
                           <MDBInput
-                            className="mb-4"
+                            className="mb-2"
                             label="Expiration"
                             type="text"
                             size="lg"
@@ -144,7 +143,7 @@ export default function Checkout() {
                         </MDBCol>
                         <MDBCol md="6" className="mb-5">
                           <MDBInput
-                            className="mb-4"
+                            className="mb-2"
                             label="Cvv"
                             type="text"
                             size="lg"
@@ -158,10 +157,9 @@ export default function Checkout() {
 
                       <p className="mb-5">
                         Your information will be under privated !
-                        <a href="#!"> obcaecati sapiente</a>.
                       </p>
 
-                      <MDBBtn block size="lg">
+                      <MDBBtn block size="lg" color="success">
                         Buy now
                       </MDBBtn>
                     </form>

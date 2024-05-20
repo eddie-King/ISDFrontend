@@ -6,8 +6,7 @@ import Image from 'react-bootstrap/Image';
 import Header from './Header';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import swal from 'sweetalert'
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const [product, setProducts] = useState('')
@@ -27,9 +26,6 @@ const ProductDetailPage = () => {
   const decreaseItems = () => {
     if(amount>1) { setAmount(amount => amount -1)}
   }
-  const showToastMessage = () => {
-    toast.success("Success Notification !")
-  };
   
   const addToCart = () => {
     const cartItem = {
@@ -39,7 +35,18 @@ const ProductDetailPage = () => {
       price: product.price,
       amount: amount
     };
+    if(localStorage.getItem('access_token') === null)
+      {
+        swal({
+          icon: "info",
+          text: "Please login first!",
+          
+        });
+        return;
+      }
 
+    if(localStorage.getItem('access_token') !== null){
+  
     const storedCart = localStorage.getItem('myCart');
     let cartArray;
 
@@ -51,11 +58,19 @@ const ProductDetailPage = () => {
     } catch (e) {
       cartArray = [];
     }
-
+    const productExist = cartArray.some(item => item.id === productId)
+    if(productExist){
+      swal({
+        icon: "error",
+        text: "This product is already in your cart!",
+      })
+    }else{
     cartArray.push(cartItem);
     localStorage.setItem('myCart', JSON.stringify(cartArray));
-    showToastMessage()
-  };
+    swal({
+      icon: "success",
+    });
+  }}};
   return (
     <>
 

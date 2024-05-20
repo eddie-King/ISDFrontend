@@ -7,17 +7,24 @@ import axios from 'axios';
 import Header from './Header';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import Pagnation from "./Pagnation";
 import './SearchResult.css'
 const Tops = () => {
    
     const navigate = useNavigate();
     
-      const [products, setProducts]= useState([])
+    const [products, setProducts] = useState({
+      data: [],
+      totalElement: 0,
+      totalPage:0
+    })
     
     useEffect(()=>{
       axios.get("http://localhost:8088/products/list?categoryId=2")
       . then(response =>{
         setProducts(response.data);
+        products.totalPage = response.totalPage
+        products.totalElement = response.totalElement
         console.log(response.data)
       })
       .catch(error =>
@@ -55,7 +62,10 @@ const Tops = () => {
                 ))}
             </div>
         </div>
-
+        <Pagnation
+      totalElement= {products.totalElement}
+      totalPage = {products.totalPage}
+      />
         <Footer/>
     </>
   )

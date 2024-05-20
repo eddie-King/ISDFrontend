@@ -10,7 +10,9 @@ const Search = () => {
   const navigate = useNavigate();
   const handleSearch = async (e) =>{
     e.preventDefault();
-    navigate(`/search/${keyword}`)
+    if(keyword.length > 0){
+    navigate(`/search/${keyword}`
+  )}
 }
 
   return (

@@ -11,17 +11,40 @@ const Cart = () => {
       if(storedCart) {
         setCartItems(JSON.parse(storedCart))
       }
-    }, [])
-    const removeFromCart = (index) =>{
-      const storedCard = localStorage.getItem('myCart')
-      if (storedCard){
-        let cartArray = JSON.parse(storedCard)
-        if (Array.isArray(cartArray) && index >=0 && index< cartArray.length){
-          cartArray.slice(index, 1)
-          localStorage.setItem('myCart', JSON.stringify(cartArray))
-        }
+    },[])
+    const removeFromCart = (index) => {
+      const storedCart = localStorage.getItem('myCart');
+      if (storedCart) {
+          let cartArray = JSON.parse(storedCart);
+          if (Array.isArray(cartArray) && index >= 0 && index < cartArray.length) {
+              cartArray.splice(index, 1); // Correctly remove the item
+              localStorage.setItem('myCart', JSON.stringify(cartArray));
+              setCartItems(cartArray); // Update the state to reflect the change
+          }
       }
-    }
+  };
+
+    const addItems = (index) => {
+      setCartItems(prevItems => {
+          const newItems = [...prevItems];
+          if (prevItems[index].amount < newItems[index].quantity) {
+              newItems[index].amount = prevItems[index].amount + 1;
+              localStorage.setItem('myCart', JSON.stringify(newItems));
+          }
+          return newItems;
+      });
+  };
+
+  const decreaseItems = (index) => {
+    setCartItems(prevItems => {
+      const newItems = [...prevItems];
+      if (newItems[index].amount > 1) {
+          newItems[index].amount -= 1;
+          localStorage.setItem('myCart', JSON.stringify(newItems));
+      }
+      return newItems;
+  });
+  }
 
     const gotoDetailPage = (id)=>{
     
@@ -83,7 +106,13 @@ const Cart = () => {
                         </td>
 
                         <td>
-                         {item.amount}
+                        <button onClick={() => decreaseItems(index)} className="btn btn-sm  mx-1">
+                                -
+                              </button>
+                              {item.amount}
+                              <button onClick={() => addItems(index)} className="btn btn-sm  mx-">
+                                +
+                              </button>
                         </td>
 
                         <td>
@@ -99,7 +128,7 @@ const Cart = () => {
                             <i className="fa fa-heart"></i>
                           </button>
 
-                          <button href="" className="btn btn-light" onClick={removeFromCart(index)}>
+                          <button href="" className="btn btn-light" onClick={ ()=>removeFromCart(index)}>
                             Remove
                           </button>
                         </td>

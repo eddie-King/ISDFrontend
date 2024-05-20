@@ -19,6 +19,8 @@ const News = () => {
     axios.get("http://localhost:8088/products/list?categoryId=1")
     . then(response =>{
       setProducts(response.data);
+      products.totalPage = response.totalPage
+        products.totalElement = response.totalElement
       console.log(response.data)
     })
     .catch(error =>
@@ -56,7 +58,10 @@ const News = () => {
                 ))}
             </div>
         </div>
-  <Pagnation/>
+        <Pagnation
+      totalElement= {products.totalElement}
+      totalPage = {products.totalPage}
+      />
 
 
       <Footer/>

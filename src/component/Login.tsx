@@ -4,6 +4,7 @@ import axios from "axios";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import './Login.css'
 import token from "../Token";
+import swal from 'sweetalert'
 interface IFormInput {
   email: string;
   password: any;
@@ -36,10 +37,10 @@ const Login = () => {
             const data = response.data
             if(data.code == 0){
              navigate("/")
-             alert("Login successful!")
+             swal("Successful!", "You loged!", "success");
              token.setToken(data.content.Bearer)
           }else{
-            alert("Fail to login!")
+            swal("Error!", "You failed to login!", "error");
           }
         } catch(err){
             console.error(e)

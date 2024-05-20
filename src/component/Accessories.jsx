@@ -8,6 +8,7 @@ import './SearchResult'
 import Header from "./Header";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Pagnation from "./Pagnation";
 const Accessories = () => {
  
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const Accessories = () => {
     axios.get("http://localhost:8088/products/list?categoryId=4")
     . then(response =>{
       setProducts(response.data);
+      products.totalPage = response.totalPage
+        products.totalElement = response.totalElement
       console.log(response.data)
     })
     .catch(error =>
@@ -53,6 +56,10 @@ const Accessories = () => {
                 ))}
             </div>
         </div>
+        <Pagnation
+      totalElement= {products.totalElement}
+      totalPage = {products.totalPage}
+      />
         <Footer/>
 
     </>

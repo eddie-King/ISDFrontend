@@ -29,6 +29,7 @@
     "react-token-auth": "^2.3.8",
     "routes": "^2.1.0",
     "service-utils": "^1.0.53",
+    "sweetalert": "^2.1.2",
     "validator": "^13.11.0"
   },
   "devDependencies": {
